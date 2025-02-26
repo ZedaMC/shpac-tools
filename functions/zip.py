@@ -4,7 +4,7 @@ import zipfile
 
 from functions.encrypt import encrypt
 from functions.compression import decompress
-from functions.decompile import decompile
+from functions.compiling import decompile, compile, errors
 
 def extract(path, new_name):
     if zipfile.is_zipfile(new_name):
@@ -14,6 +14,18 @@ def extract(path, new_name):
             zip.extractall(new_name + "-extracted")
         decompile(new_name + "-extracted")
         decompress(new_name + "-extracted")
+
+    else:
+        print("ERROR: Not a zip file")
+        print(new_name)
+        print(path)
+
+def homebrew_extract(path, new_name):
+    if zipfile.is_zipfile(path):
+        print("Is a zip file!")
+
+        with zipfile.ZipFile(path, 'r') as zip:
+            zip.extractall(new_name + "-extracted")
 
     else:
         print("ERROR: Not a zip file")
@@ -37,9 +49,23 @@ def zip_files(folder_name, new_name):
                 with file.open('rb') as f:
                     zip.writestr(info, f.read())
 
+def homebrew_zip(folder_name, new_name):
+    folder = pathlib.Path(folder_name)
+    split = new_name.split(".")
+    file_name = split[0]
+    with zipfile.ZipFile(f"{file_name}.shpac", 'w', zipfile.ZIP_STORED) as zip:
+        for file in folder.rglob("*"):
+            print(file)
+            if not file.is_dir():
+                arcname = file.relative_to(folder)
+                zip.write(file, arcname=arcname)
+
 def turn_to_shpac(folder, new_name):
+    compile(folder)
     zip_files(folder, new_name)
     split = new_name.split(".")
     file_name = split[0]
     encrypt(open(f"{file_name}-unencrypted.shpac", 'rb'), open(f"{file_name}.shpac", 'wb'))
     os.remove(f"{file_name}-unencrypted.shpac")
+    if errors:
+        print("Notice: There is at least one error during compiling. Errors: " + str(errors))

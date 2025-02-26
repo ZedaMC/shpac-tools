@@ -108,7 +108,7 @@ def verify(f):
 def decrypt_and_decompile(f, outf, new_name, file_path):
     # Check header
     if f.read(8) != b'CIPH\x00\x00\x00\x00':
-        print('Invalid file signature')
+        print('Invalid file signature, use homebrew_decompile for homebrew shpac files')
         sys.exit(1)
 
     # Get body size

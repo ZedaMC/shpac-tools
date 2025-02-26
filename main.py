@@ -1,12 +1,12 @@
 import sys
 
 from functions.decrypt import decrypt, decrypt_and_decompile, verify
-from functions.encrypt import encrypt, encrypt_and_compile
+from functions.encrypt import encrypt, encrypt_and_compile, homebrew_compile, homebrew_decompile
 from key import AES_KEY, AES_IV
 
 
 def print_usage(file):
-    print(f'Usage: {file} verify/encrypt/encrypt_and_compile/decrypt/decrypt_and_decompile infile outfile')
+    print(f'Usage: {file} verify/encrypt/encrypt_and_compile/homebrew_compile/decrypt/decrypt_and_decompile/homebrew_decompile infile outfile')
     sys.exit(1)
 
 def main(argc, argv):
@@ -37,10 +37,18 @@ def main(argc, argv):
         if argc < 4:
             print_usage(argv[0])
         encrypt_and_compile(sys.argv[2], sys.argv[3])
+    elif argv[1] == 'homebrew_compile':
+        if argc < 4:
+            print_usage(argv[0])
+        homebrew_compile(sys.argv[2], sys.argv[3])
     elif argv[1] == 'decrypt_and_decompile':
         if argc < 4:
             print_usage(argv[0])
         decrypt_and_decompile(f, open(sys.argv[3], 'wb'), sys.argv[3], sys.argv[2])
+    elif argv[1] == 'homebrew_decompile':
+        if argc < 4:
+            print_usage(argv[0])
+        homebrew_decompile(sys.argv[2], sys.argv[3])
     elif argv[1] == 'decrypt':
         if argc < 4:
             print_usage(argv[0])

@@ -1,4 +1,5 @@
 from Crypto.Cipher import AES
+
 from key import AES_KEY, AES_IV
 
 from functions.compression import compress
@@ -9,6 +10,14 @@ def encrypt_and_compile(folder_name, file_name):
     # Circular import
     from functions.zip import turn_to_shpac
     turn_to_shpac(folder_name, file_name)
+
+def homebrew_compile(folder_name, file_name):
+    from functions.zip import homebrew_zip
+    homebrew_zip(folder_name, file_name)
+
+def homebrew_decompile(path, new_name):
+    from functions.zip import homebrew_extract
+    homebrew_extract(path, new_name)
 
 def encrypt(f, outf):
     # Get size to encrypt

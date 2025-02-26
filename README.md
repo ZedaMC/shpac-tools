@@ -1,7 +1,7 @@
 # Shpac Tools
 Using this project you can easily verify,encrypt and decrypt shpac files. You can also convert a folder to a valid shpac file and also turn a shpac file into a folder. Based off ciphtool by GaryOderNicht. Works with Nintendo Alarmo.
 
-Usage: python main.py verify/encrypt/encrypt_and_compile/decrypt/decrypt_and_decompile infile outfile
+Usage: python main.py verify/encrypt/encrypt_and_compile/homebrew_compile/decrypt/decrypt_and_decompile/homebrew_decompile infile outfile
 
 # Setting up
 1. Clone the repository
@@ -9,6 +9,7 @@ Usage: python main.py verify/encrypt/encrypt_and_compile/decrypt/decrypt_and_dec
 3. Download unluac (https://sourceforge.net/projects/unluac/files/Unstable/)
 4. Rename the jar to unluac.jar and put in in the tools folder
 5. In key.py enter your Alarmo's AES_KEY and AES_IV.
+6. In compiling.py specify the lua path.
 
 # Requirements
 - Python 3
