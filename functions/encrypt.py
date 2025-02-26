@@ -1,16 +1,18 @@
-import pathlib
-
 from Crypto.Cipher import AES
-
-from functions.decrypt import get_remaining_size
 from key import AES_KEY, AES_IV
 
+from functions.compression import compress
 
-def encrypt_and_compile(f, outf, folder_name, file):
-    folder = pathlib.Path(folder_name)
+
+def encrypt_and_compile(folder_name, file_name):
+    compress(folder_name)
+    # Circular import
+    from functions.zip import turn_to_shpac
+    turn_to_shpac(folder_name, file_name)
 
 def encrypt(f, outf):
     # Get size to encrypt
+    from functions.decrypt import get_remaining_size
     size = get_remaining_size(f)
 
     # Add file signature

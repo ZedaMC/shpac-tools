@@ -2,10 +2,11 @@
 # Tool to work with Alarmo CIPH files
 # Created by GaryOderNichts in 2024
 
-import sys
-import os
-from Crypto.Cipher import AES
 import hashlib
+import os
+import sys
+
+from Crypto.Cipher import AES
 
 from functions.zip import extract
 from key import AES_KEY, AES_IV
@@ -139,7 +140,7 @@ def decrypt_and_decompile(f, outf, new_name, file_path):
 
     outf.close()
 
-    extract(outf, f, file_path, new_name)
+    extract(file_path, new_name)
 
 def decrypt(f, outf):
     # Check header
