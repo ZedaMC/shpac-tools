@@ -3,6 +3,8 @@ Using this project you can easily verify,encrypt and decrypt shpac files. You ca
 
 Usage: python main.py verify/encrypt/encrypt_and_compile/homebrew_compile/decrypt/decrypt_and_decompile/homebrew_decompile infile outfile
 
+NOTICE: Unluac may incorrectly decompile some files.
+
 # Setting up
 1. Clone the repository
 2. Install these packages: `pip install msgpack zstandard pycryptodome pathlib`
